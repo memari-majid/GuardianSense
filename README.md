@@ -27,11 +27,6 @@ git clone https://github.com/your-repository/guardiansense.git
 cd guardiansense
 ```
 
-Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
-
 ### Install Python Dependencies
 Install the required Python packages by running the following command:
 ```bash
