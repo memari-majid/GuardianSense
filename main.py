@@ -1,5 +1,4 @@
 # Multimodal Medical Emergency Detection Agent with Q&A via Ollama LLaMA 3.2 RAG System
-# it does not do Q&A via Ollama LLaMA 3.2 RAG System and AI doctor yet
 
 import random
 import time
@@ -91,7 +90,7 @@ def initialize_llama_via_ollama():
         try:
             headers = {"Content-Type": "application/json"}
             data = {
-                "model": "llama-3.2-rag",  # Specify LLaMA 3.2 RAG model
+                "model": "llama3.2",  # Specify LLaMA 3.2 RAG model
                 "prompt": prompt
             }
             response = requests.post(
@@ -113,6 +112,7 @@ def initialize_llama_via_ollama():
                 return output.strip()
             else:
                 print(f"Error communicating with Ollama: {response.status_code}")
+                print(f"Response: {response.text}")
                 return ""
         except requests.exceptions.RequestException as e:
             print(f"Error communicating with Ollama: {e}")
@@ -309,8 +309,8 @@ def data_fusion(physio_data, fall_detected, emotion, speech_text, speech_analysi
 def medical_emergency_agent():
     add_custom_css()
 
-    # Display the AI Doctor image
-    st.image('AI_doctor.png', width=300)
+    # Display the AI doctor image
+    st.image('AI_doctor.png', use_column_width=True)
 
     st.title("Multimodal Medical Emergency Detection Agent")
 
@@ -532,7 +532,7 @@ def medical_emergency_agent():
             st.info("Note: If you do not hear the alarm sound, your browser may have blocked autoplay. Please adjust your browser settings to allow autoplay of audio.")
 
         # -------------------------------
-        # New Section: Ask Questions
+        # New Section: Ask Questions with Fact-Checking
         # -------------------------------
 
         st.header("Ask Questions about the Data")
@@ -569,6 +569,26 @@ def medical_emergency_agent():
                     if answer:
                         st.subheader("Answer:")
                         st.write(answer)
+
+                        # Fact-check the answer using the medical model
+                        with st.spinner('Fact-checking the answer with the medical model...'):
+                            fact_check_prompt = f"""
+                            Based on the following data:
+
+                            {data_summary}
+
+                            The following answer was provided to the question "{question}":
+
+                            {answer}
+
+                            Is this answer correct based on the data provided? Provide a brief explanation and correct any inaccuracies.
+                            """
+                            fact_check_result = llama_model(fact_check_prompt)
+                            if fact_check_result:
+                                st.subheader("Fact-Check Result:")
+                                st.write(fact_check_result)
+                            else:
+                                st.error("No response from the medical model during fact-checking.")
                     else:
                         st.error("No response from the AI Doctor.")
         else:
