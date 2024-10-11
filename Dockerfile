@@ -7,12 +7,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-<<<<<<< HEAD
-=======
 # Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
->>>>>>> ac3e1c2 (update)
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -22,7 +19,6 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-<<<<<<< HEAD
 # Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
@@ -38,4 +34,3 @@ RUN chmod +x /entrypoint.sh
 
 # Define the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
->>>>>>> ac3e1c2 (update)
