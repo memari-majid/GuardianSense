@@ -34,13 +34,13 @@ pip install -r requirements.txt
 ### Running GuardianSense
 To start monitoring, simply run:
 ```bash
-python run_agent.py
+python main.py
 ```
 
 ### Testing the System
 You can test the agent with pre-recorded videos or text inputs by specifying a file path:
 ```bash
-python run_agent.py --input test_video.mp4
+python main.py --input test_video.mp4
 ```
 
 ## Technologies Used
