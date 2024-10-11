@@ -50,10 +50,10 @@ To manage Python environments more effectively, we recommend using **Miniconda**
    bash Miniconda3-latest-MacOSX-x86_64.sh
    ```
 
-3. **Create a New Conda Environment with Python 3.9**  
+3. **Create a New Conda Environment**  
 Once Miniconda is installed, create a new environment with Python 3.9 using the following commands:
 ```bash
-conda create --name guardian python=3.9
+conda create --name guardian
 ```
 
 Activate the environment:
