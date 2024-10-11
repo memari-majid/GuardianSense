@@ -9,4 +9,6 @@ Pillow
 transformers
 requests
 
-# Tkinter is part of the Python standard library, no need to install separately
+# Web app GUI
+streamlit
+

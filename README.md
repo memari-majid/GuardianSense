@@ -1,5 +1,7 @@
+
 # **GuardianSense: Autonomous Multi-Modal Emergency Detection Agent for Disabled Persons**
 ![GuardianSense AI](./pipeline.png)
+
 ## Overview  
 **GuardianSense** is an AI-driven, autonomous multi-modal agent designed to assist disabled individuals by continuously monitoring their environment through various data inputs like video, image, text, speech, and URLs. By leveraging pretrained models on medical data, GuardianSense makes intelligent, autonomous decisions to detect potential emergencies and triggers alarms to notify caregivers or authorities in real-time. It also integrates health records from Apple Watches and GPS data from vehicle airbags to provide comprehensive monitoring, offering a proactive approach to enhancing the safety and independence of individuals with disabilities.
 
@@ -11,7 +13,7 @@
 - **Medical Decision-Making**: Uses pretrained models on medical data to autonomously assess user health and environmental risks, making decisions to trigger appropriate responses.
 - **Health Record Analysis**: Analyzes health data from Apple Watches to monitor vital signs and detect anomalies in real-time.
 - **GPS Integration**: Uses GPS data from vehicle airbags to detect vehicle-related emergencies or collisions.
-- **File Selection Explorer**: When running `main.py`, a file explorer opens, allowing users to select any data type (e.g., video, image, text, JSON, or audio files) for analysis.
+- **File Selection Explorer**: When running main.py, a file explorer opens, allowing users to select any data type (e.g., video, image, text, JSON, or audio files) for analysis.
 - **Emergency triggers**: Automatically triggers alarms or sends notifications in case of emergency events, alerting caregivers or emergency services.
 - **Multi-modal integration**: Combines and processes data from multiple sources to form a holistic understanding of the user's environment and safety status.
 
@@ -23,6 +25,7 @@ Clone this repository:
 git clone https://github.com/your-repository/guardiansense.git
 cd guardiansense
 ```
+
 Install the required dependencies:
 ```bash
 pip install -r requirements.txt
@@ -52,6 +55,7 @@ Once Miniconda is installed, create a new environment with Python 3.9 using the 
 ```bash
 conda create --name guardian python=3.9
 ```
+
 Activate the environment:
 ```bash
 conda activate guardian
@@ -83,6 +87,7 @@ Alternatively, for manual installation:
 curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz
 sudo tar -C /usr -xzf ollama-linux-amd64.tgz
 ```
+
 Start Ollama:
 ```bash
 ollama serve
@@ -105,13 +110,13 @@ To start monitoring, simply run:
 python main.py
 ```
 
-When `main.py` is executed, a file explorer will open, allowing you to select any data type, such as video, image, text, JSON, or audio files for analysis.
-
-### Testing the System
-You can test the agent with pre-recorded videos or text inputs by specifying a file path:
+To run the application using Streamlit:
 ```bash
-python main.py --input test_video.mp4
+streamlit run main.py
 ```
+
+When main.py is executed, a file explorer will open, allowing you to select any data type, such as video, image, text, JSON, or audio files for analysis.
+
 
 ## Technologies Used
 - **Python**: Main programming language.
