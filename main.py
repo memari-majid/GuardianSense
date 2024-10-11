@@ -1,4 +1,4 @@
-# Multimodal Medical Emergency Detection Agent with LLaMA 3.2 via Ollama
+# Multimodal Medical Emergency Detection Agent with LLaMA 3.2 via Ollama and GUI File Selection
 
 import random
 import time
@@ -17,6 +17,10 @@ import json
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Tokenizer
 from PIL import Image
 
+# Import tkinter for GUI
+import tkinter as tk
+from tkinter import filedialog, messagebox
+
 # -------------------------------
 # 1. Initialize LLaMA 3.2 via Ollama
 # -------------------------------
@@ -25,9 +29,6 @@ def initialize_llama_via_ollama():
     """
     Initializes the LLaMA 3.2 model via Ollama.
     """
-    # Ollama runs a local server that we can send HTTP requests to.
-    # Ensure that Ollama is installed and running.
-    # We'll define a function to send prompts to the Ollama server.
     base_url = "http://localhost:11434"  # Default Ollama API port
 
     def llama_model(prompt):
@@ -43,7 +44,6 @@ def initialize_llama_via_ollama():
         else:
             print(f"Error communicating with Ollama: {response.status_code}")
             return ""
-
     return llama_model
 
 # -------------------------------
@@ -182,27 +182,50 @@ def data_fusion(physio_data, fall_detected, emotion, speech_text, text_analysis)
     return alerts, decision
 
 # -------------------------------
-# 8. Main Agent Function
+# 8. Main Agent Function with GUI
 # -------------------------------
 
 def medical_emergency_agent():
     # Initialize LLaMA 3.2 via Ollama
+    global llama_model
     llama_model = initialize_llama_via_ollama()
 
     # Generate synthetic data
     physio_data = generate_synthetic_data()
 
-    # Process video data
-    video_path = 'path_to_video.mp4'  # Replace with actual video path
+    # Initialize Tkinter root
+    root = tk.Tk()
+    root.withdraw()  # Hide the main window
+
+    # Ask user to select video file
+    messagebox.showinfo("Select Video", "Please select a video file for analysis.")
+    video_path = filedialog.askopenfilename(title="Select Video File", filetypes=[("Video Files", "*.mp4;*.avi;*.mov")])
+    if not video_path:
+        messagebox.showerror("Error", "No video file selected.")
+        return
     fall_detected = process_video(video_path)
 
-    # Process image data
-    image_path = 'path_to_image.jpg'  # Replace with actual image path
+    # Ask user to select image file
+    messagebox.showinfo("Select Image", "Please select an image file for analysis.")
+    image_path = filedialog.askopenfilename(title="Select Image File", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
+    if not image_path:
+        messagebox.showerror("Error", "No image file selected.")
+        return
     emotion = process_image(image_path)
 
-    # Process speech data
-    audio_path = 'path_to_audio.wav'  # Replace with actual audio path
-    speech_text = process_speech(audio_path)
+    # Ask user to select audio file
+    messagebox.showinfo("Select Audio", "Please select an audio file for analysis.")
+    audio_path = filedialog.askopenfilename(title="Select Audio File", filetypes=[("Audio Files", "*.wav;*.mp3")])
+    if not audio_path:
+        messagebox.showerror("Error", "No audio file selected.")
+        speech_text = None
+    else:
+        speech_text = process_speech(audio_path)
+
+    # Get text input from the user
+    input_text = simpledialog.askstring("Input", "Please enter any text input (or leave blank):")
+    if not input_text:
+        input_text = "No input provided."
 
     # Analyze speech text using LLaMA 3.2
     if speech_text:
@@ -210,8 +233,7 @@ def medical_emergency_agent():
     else:
         speech_analysis = 'No speech input.'
 
-    # Process text data (e.g., user input)
-    input_text = "I have severe chest pain and shortness of breath."  # Replace with actual text input
+    # Process text data using LLaMA 3.2
     text_analysis = process_text_llama(input_text, llama_model)
 
     # Perform data fusion and make decision
@@ -219,21 +241,26 @@ def medical_emergency_agent():
         physio_data, fall_detected, emotion, speech_text, text_analysis
     )
 
-    # Print results
-    print("Physiological Data:", physio_data)
-    print("Fall Detected:", fall_detected)
-    print("Detected Emotion:", emotion)
-    print("Transcribed Speech:", speech_text)
-    print("\nSpeech Analysis:", speech_analysis)
-    print("\nText Analysis:", text_analysis)
-    print("\nAlerts:")
+    # Display results
+    result_message = (
+        f"Physiological Data:\n{physio_data}\n\n"
+        f"Fall Detected: {fall_detected}\n"
+        f"Detected Emotion: {emotion}\n"
+        f"Transcribed Speech: {speech_text}\n\n"
+        f"Speech Analysis:\n{speech_analysis}\n\n"
+        f"Text Analysis:\n{text_analysis}\n\n"
+        f"Alerts:\n"
+    )
     for alert in alerts:
-        print("-", alert)
-    print("\nDecision:", decision)
+        result_message += f"- {alert}\n"
+    result_message += f"\nDecision:\n{decision}"
+
+    messagebox.showinfo("Analysis Results", result_message)
 
 # -------------------------------
 # 9. Run the Agent
 # -------------------------------
 
 if __name__ == "__main__":
+    from tkinter import simpledialog
     medical_emergency_agent()
