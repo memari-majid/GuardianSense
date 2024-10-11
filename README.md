@@ -1,5 +1,5 @@
 # **GuardianSense: Autonomous Multi-Modal Emergency Detection Agent for Disabled Persons**
-
+![GuardianSense AI](./AI.png)
 ## Overview  
 **GuardianSense** is an AI-driven, autonomous multi-modal agent designed to assist disabled individuals by continuously monitoring their environment through various data inputs like video, image, text, speech, and URLs. By leveraging pretrained models on medical data, GuardianSense makes intelligent, autonomous decisions to detect potential emergencies and triggers alarms to notify caregivers or authorities in real-time. It also integrates health records from Apple Watches and GPS data from vehicle airbags to provide comprehensive monitoring, offering a proactive approach to enhancing the safety and independence of individuals with disabilities.
 
