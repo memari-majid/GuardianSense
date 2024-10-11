@@ -1,26 +1,12 @@
-# General libraries
-time
-random
-
-# OpenCV and Numpy for image and video processing
-opencv-python-headless
+# Core dependencies
 numpy
-
-# PyTorch for deep learning models
 torch
-
-# Librosa for audio and speech processing
+opencv-python
 librosa
-
-# Requests and JSON for handling Ollama API interactions
-requests
-json
-
-# HuggingFace Transformers for Wav2Vec2 models
-transformers
-
-# Pillow for image processing
 Pillow
 
-# Tkinter for file dialogs and GUI
-tk
+# Transformers for Wav2Vec2
+transformers
+requests
+
+# Tkinter is part of the Python standard library, no need to install separately
