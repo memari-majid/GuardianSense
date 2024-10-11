@@ -1,4 +1,5 @@
 # Multimodal Medical Emergency Detection Agent with Q&A via Ollama LLaMA 3.2 RAG System
+# it does not do Q&A via Ollama LLaMA 3.2 RAG System and AI doctor yet
 
 import random
 import time
