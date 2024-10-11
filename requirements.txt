@@ -1,0 +1,30 @@
+# Base Python Version
+python_version==3.9
+
+# Core packages for LangChain, HuggingFace, and other frameworks
+langchain==0.0.276
+langchain_community==0.0.7
+faiss-cpu==1.7.4
+transformers==4.30.2
+ollama==0.0.6
+langchain-huggingface==0.0.4
+
+# For handling images, documents, media, etc.
+Pillow==9.2.0
+pymupdf==1.20.0
+mediapipe==0.10.0
+sentencepiece==0.1.97
+opencv-python-headless==4.8.0.76
+
+# YOLO and image detection
+ultralytics==8.0.136
+
+# Deep learning libraries and tools
+deepface==0.0.78
+librosa==0.10.0.post2
+ipywidgets==8.0.6
+
+# PyTorch and related libraries (CUDA 11.7 version)
+torch==2.0.1+cu117
+torchvision==0.15.2+cu117
+torchaudio==2.0.2+cu117 -f https://download.pytorch.org/whl/cu117
