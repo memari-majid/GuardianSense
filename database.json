@@ -1,0 +1,101 @@
+{
+    "patient_id": "123456",
+    "personal_information": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "age": 45,
+      "gender": "male",
+      "disability_type": "paraplegia",
+      "address": {
+        "street": "1234 Elm Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip_code": "62704"
+      },
+      "emergency_contact": {
+        "name": "Jane Doe",
+        "relationship": "sister",
+        "phone": "+1-555-123-4567"
+      }
+    },
+    "medical_information": {
+      "primary_diagnosis": "Paraplegia due to spinal cord injury",
+      "secondary_conditions": [
+        "Hypertension",
+        "Chronic pain"
+      ],
+      "medications": [
+        {
+          "name": "Lisinopril",
+          "dosage": "10 mg",
+          "frequency": "Once daily"
+        },
+        {
+          "name": "Gabapentin",
+          "dosage": "300 mg",
+          "frequency": "Three times daily"
+        }
+      ],
+      "allergies": [
+        "Penicillin"
+      ],
+      "health_devices": {
+        "apple_watch": {
+          "model": "Apple Watch Series 7",
+          "last_synced": "2024-10-10T08:45:00Z",
+          "health_metrics": {
+            "heart_rate": "78 bpm",
+            "oxygen_saturation": "97%",
+            "steps_taken_today": 2500,
+            "fall_detection": false
+          }
+        },
+        "wheelchair": {
+          "brand": "Permobil",
+          "last_serviced": "2024-08-01",
+          "battery_level": "80%"
+        }
+      },
+      "gps_data": {
+        "location": {
+          "latitude": 39.7817,
+          "longitude": -89.6501
+        },
+        "last_recorded": "2024-10-10T09:15:00Z"
+      }
+    },
+    "caregiver_notes": [
+      {
+        "date": "2024-10-09",
+        "note": "Patient reported mild dizziness during the day. Blood pressure slightly elevated, 140/90 mmHg."
+      },
+      {
+        "date": "2024-10-08",
+        "note": "Routine check-up, no new issues reported. Patient in stable condition."
+      }
+    ],
+    "emergency_monitoring": {
+      "last_incident": {
+        "type": "fall_detection",
+        "date": "2024-09-30T12:30:00Z",
+        "resolved": true,
+        "details": "Minor fall from wheelchair, no injuries reported. Caregiver alerted and on-site within 10 minutes."
+      },
+      "current_status": "stable",
+      "alerts_enabled": true,
+      "alert_settings": {
+        "heart_rate_thresholds": {
+          "low": 50,
+          "high": 120
+        },
+        "oxygen_saturation_thresholds": {
+          "low": 90
+        },
+        "gps_geofencing": {
+          "enabled": true,
+          "safe_zone_radius_meters": 500
+        }
+      }
+    }
+  }
+  
