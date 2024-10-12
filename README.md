@@ -1,6 +1,4 @@
 # **GuardianSense: Autonomous Multi-Modal Emergency Detection Agent for Disabled Persons**
-
-![+I](./AI_doctor.png)
 <img src="./AI_doctor.png" alt="AI Doctor" style="width: 100%;"/>
 
 
