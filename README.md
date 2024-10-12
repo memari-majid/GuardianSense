@@ -72,7 +72,7 @@ When main.py is executed, a file explorer will open, allowing you to select any 
 - **Natural Language Processing (NLP)**: For text and speech analysis.
 - **Pretrained Medical Models**: For autonomous decision-making based on medical data.
 - **Apple HealthKit API**: For analyzing health records from Apple Watches.
-- **GPS Integration**: For analyzing GPS data from airbags or other sources.
+- **GPS Integration**: For analyzing GPS data from Apple Airtags or other sources.
 - **SQL**: For interacting with the database to access patient records or care instructions.
 
 ## Contributing  
