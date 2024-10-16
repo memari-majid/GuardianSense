@@ -31,7 +31,7 @@ cd guardiansense
 Install the required Python packages by running the following command:
 ```bash
 conda env create -f environment.yml
-conda activate guardiansense
+conda activate llm
 ```
 
 ### Install Ollama  
