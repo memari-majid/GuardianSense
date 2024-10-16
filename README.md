@@ -30,7 +30,8 @@ cd guardiansense
 ### Install Python Dependencies
 Install the required Python packages by running the following command:
 ```bash
-pip install -r requirements.txt
+conda env create -f environment.yml
+conda activate guardiansense
 ```
 
 ### Install Ollama  
