@@ -6,24 +6,24 @@ This tutorial provides a comprehensive explanation of the **Multimodal Medical E
 
 ## Table of Contents
 
-1. Introduction to AI Agents
-2. Overview of the Code
-3. Detailed Code Explanation
-    - Importing Libraries
-    - Custom CSS for UI Enhancement
-    - Audio Encoding Function
-    - Initializing LLaMA via Ollama
-    - Synthetic Data Generation
-    - Video Processing Function
-    - Image Processing Function
-    - Speech Processing Function
-    - Text Processing with LLaMA
-    - Data Fusion and Decision-Making
-    - Streamlit GUI Application
-    - Running the Application
-4. Applications in the "AI in Action" Course
-5. Conclusion
-6. Appendix: Full Code Listing
+1. [Introduction to AI Agents](#1-introduction-to-ai-agents)
+2. [Overview of the Code](#2-overview-of-the-code)
+3. [Detailed Code Explanation](#3-detailed-code-explanation)
+   - [3.1 Importing Libraries](#31-importing-libraries)
+   - [3.2 Custom CSS for UI Enhancement](#32-custom-css-for-ui-enhancement)
+   - [3.3 Audio Encoding Function](#33-audio-encoding-function)
+   - [3.4 Initializing LLaMA via Ollama](#34-initializing-llama-via-ollama)
+   - [3.5 Synthetic Data Generation](#35-synthetic-data-generation)
+   - [3.6 Video Processing Function](#36-video-processing-function)
+   - [3.7 Image Processing Function](#37-image-processing-function)
+   - [3.8 Speech Processing Function](#38-speech-processing-function)
+   - [3.9 Text Processing with LLaMA](#39-text-processing-with-llama)
+   - [3.10 Data Fusion and Decision-Making](#310-data-fusion-and-decision-making)
+   - [3.11 Streamlit GUI Application](#311-streamlit-gui-application)
+   - [3.12 Running the Application](#312-running-the-application)
+4. [Applications in the "AI in Action" Course](#4-applications-in-the-ai-in-action-course)
+5. [Conclusion](#5-conclusion)
+6. [Appendix: Full Code Listing](#6-appendix-full-code-listing)
 
 ---
 
