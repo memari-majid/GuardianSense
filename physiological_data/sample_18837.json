@@ -1,0 +1,11 @@
+{
+    "SampleID": 18837,
+    "HeartRate": 65,
+    "SystolicBP": 120,
+    "DiastolicBP": 76,
+    "OxygenSaturation": 97.6,
+    "Temperature": 98.1,
+    "ScenarioName": "Stress",
+    "ScenarioDescription": "Emotional strain or tension.",
+    "Emergency": "No"
+}

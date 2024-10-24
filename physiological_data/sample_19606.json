@@ -1,0 +1,11 @@
+{
+    "SampleID": 19606,
+    "HeartRate": 78,
+    "SystolicBP": 130,
+    "DiastolicBP": 72,
+    "OxygenSaturation": 99.0,
+    "Temperature": 98.1,
+    "ScenarioName": "Indigestion",
+    "ScenarioDescription": "Discomfort in the stomach area.",
+    "Emergency": "No"
+}

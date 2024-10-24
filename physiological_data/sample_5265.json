@@ -1,0 +1,11 @@
+{
+    "SampleID": 5265,
+    "HeartRate": 104,
+    "SystolicBP": 166,
+    "DiastolicBP": 104,
+    "OxygenSaturation": 72.4,
+    "Temperature": 97.9,
+    "ScenarioName": "Seizure",
+    "ScenarioDescription": "A sudden, uncontrolled electrical disturbance in the brain.",
+    "Emergency": "Yes"
+}

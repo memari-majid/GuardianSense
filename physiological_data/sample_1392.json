@@ -1,0 +1,11 @@
+{
+    "SampleID": 1392,
+    "HeartRate": 148,
+    "SystolicBP": 142,
+    "DiastolicBP": 93,
+    "OxygenSaturation": 82.9,
+    "Temperature": 98.8,
+    "ScenarioName": "Stroke",
+    "ScenarioDescription": "Interruption of blood supply to the brain causing brain damage.",
+    "Emergency": "Yes"
+}

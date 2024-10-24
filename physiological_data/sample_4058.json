@@ -1,0 +1,11 @@
+{
+    "SampleID": 4058,
+    "HeartRate": 126,
+    "SystolicBP": 158,
+    "DiastolicBP": 85,
+    "OxygenSaturation": 71.2,
+    "Temperature": 98.3,
+    "ScenarioName": "Allergic Reaction",
+    "ScenarioDescription": "An adverse immune response to a substance.",
+    "Emergency": "Yes"
+}

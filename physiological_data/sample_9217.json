@@ -1,0 +1,11 @@
+{
+    "SampleID": 9217,
+    "HeartRate": 94,
+    "SystolicBP": 176,
+    "DiastolicBP": 52,
+    "OxygenSaturation": 81.7,
+    "Temperature": 100.2,
+    "ScenarioName": "Poisoning",
+    "ScenarioDescription": "Ingestion or exposure to harmful substances.",
+    "Emergency": "Yes"
+}

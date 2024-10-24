@@ -1,0 +1,11 @@
+{
+    "SampleID": 10901,
+    "HeartRate": 128,
+    "SystolicBP": 90,
+    "DiastolicBP": 95,
+    "OxygenSaturation": 74.6,
+    "Temperature": 100.7,
+    "ScenarioName": "Severe Bleeding",
+    "ScenarioDescription": "Excessive blood loss due to injury.",
+    "Emergency": "Yes"
+}

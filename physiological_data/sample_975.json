@@ -1,0 +1,11 @@
+{
+    "SampleID": 975,
+    "HeartRate": 99,
+    "SystolicBP": 142,
+    "DiastolicBP": 103,
+    "OxygenSaturation": 94.5,
+    "Temperature": 100.5,
+    "ScenarioName": "Heart Attack",
+    "ScenarioDescription": "A sudden blockage of blood flow to the heart muscle.",
+    "Emergency": "Yes"
+}

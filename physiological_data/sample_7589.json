@@ -1,0 +1,11 @@
+{
+    "SampleID": 7589,
+    "HeartRate": 94,
+    "SystolicBP": 136,
+    "DiastolicBP": 80,
+    "OxygenSaturation": 71.2,
+    "Temperature": 99.7,
+    "ScenarioName": "Choking",
+    "ScenarioDescription": "Obstruction of the airway preventing normal breathing.",
+    "Emergency": "Yes"
+}

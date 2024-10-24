@@ -1,0 +1,11 @@
+{
+    "SampleID": 11288,
+    "HeartRate": 92,
+    "SystolicBP": 151,
+    "DiastolicBP": 51,
+    "OxygenSaturation": 94.8,
+    "Temperature": 102.0,
+    "ScenarioName": "Burns",
+    "ScenarioDescription": "Injury to tissue caused by heat, chemicals, electricity, or radiation.",
+    "Emergency": "Yes"
+}

@@ -1,0 +1,11 @@
+{
+    "SampleID": 13422,
+    "HeartRate": 61,
+    "SystolicBP": 113,
+    "DiastolicBP": 81,
+    "OxygenSaturation": 96.3,
+    "Temperature": 98.8,
+    "ScenarioName": "Mild Headache",
+    "ScenarioDescription": "A minor pain in the head.",
+    "Emergency": "No"
+}

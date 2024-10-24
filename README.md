@@ -59,7 +59,7 @@ ollama pull llama3.2
 
 To run the application using Streamlit:
 ```bash
-streamlit run main.py
+streamlit run emergency_detect.py
 ```
 
 When main.py is executed, a file explorer will open, allowing you to select any data type, such as video, image, text, JSON, or audio files for analysis.

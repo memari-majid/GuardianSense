@@ -1,0 +1,1 @@
+rm -rf audio_data/ image_data/ physiological_data/ text_data/ video_data/ metadata/

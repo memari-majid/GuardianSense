@@ -1,0 +1,11 @@
+{
+    "SampleID": 17080,
+    "HeartRate": 79,
+    "SystolicBP": 113,
+    "DiastolicBP": 74,
+    "OxygenSaturation": 97.3,
+    "Temperature": 97.1,
+    "ScenarioName": "Back Pain",
+    "ScenarioDescription": "Discomfort in the back area.",
+    "Emergency": "No"
+}

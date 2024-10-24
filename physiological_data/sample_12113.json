@@ -1,0 +1,11 @@
+{
+    "SampleID": 12113,
+    "HeartRate": 94,
+    "SystolicBP": 130,
+    "DiastolicBP": 72,
+    "OxygenSaturation": 97.0,
+    "Temperature": 98.7,
+    "ScenarioName": "Routine Check-up",
+    "ScenarioDescription": "A regular health examination.",
+    "Emergency": "No"
+}

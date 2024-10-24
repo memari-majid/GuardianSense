@@ -1,0 +1,11 @@
+{
+    "SampleID": 2896,
+    "HeartRate": 108,
+    "SystolicBP": 99,
+    "DiastolicBP": 110,
+    "OxygenSaturation": 93.3,
+    "Temperature": 99.5,
+    "ScenarioName": "Fall",
+    "ScenarioDescription": "An event where a person unintentionally falls to the ground.",
+    "Emergency": "Yes"
+}

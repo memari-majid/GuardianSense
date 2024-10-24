@@ -1,0 +1,11 @@
+{
+    "SampleID": 8917,
+    "HeartRate": 140,
+    "SystolicBP": 110,
+    "DiastolicBP": 57,
+    "OxygenSaturation": 79.1,
+    "Temperature": 100.5,
+    "ScenarioName": "Drowning",
+    "ScenarioDescription": "Respiratory impairment due to submersion in liquid.",
+    "Emergency": "Yes"
+}

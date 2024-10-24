@@ -1,0 +1,11 @@
+{
+    "SampleID": 16396,
+    "HeartRate": 81,
+    "SystolicBP": 114,
+    "DiastolicBP": 82,
+    "OxygenSaturation": 96.2,
+    "Temperature": 98.4,
+    "ScenarioName": "Minor Cut",
+    "ScenarioDescription": "A small skin laceration.",
+    "Emergency": "No"
+}

@@ -1,0 +1,11 @@
+{
+    "SampleID": 14199,
+    "HeartRate": 96,
+    "SystolicBP": 123,
+    "DiastolicBP": 79,
+    "OxygenSaturation": 99.5,
+    "Temperature": 98.8,
+    "ScenarioName": "Common Cold",
+    "ScenarioDescription": "A viral infection causing sneezing and sore throat.",
+    "Emergency": "No"
+}

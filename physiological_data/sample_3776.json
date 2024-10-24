@@ -1,0 +1,11 @@
+{
+    "SampleID": 3776,
+    "HeartRate": 130,
+    "SystolicBP": 138,
+    "DiastolicBP": 106,
+    "OxygenSaturation": 75.0,
+    "Temperature": 100.8,
+    "ScenarioName": "Respiratory Distress",
+    "ScenarioDescription": "Difficulty in breathing or shortness of breath.",
+    "Emergency": "Yes"
+}

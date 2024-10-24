@@ -1,0 +1,11 @@
+{
+    "SampleID": 6643,
+    "HeartRate": 93,
+    "SystolicBP": 116,
+    "DiastolicBP": 108,
+    "OxygenSaturation": 74.6,
+    "Temperature": 99.8,
+    "ScenarioName": "Diabetic Emergency",
+    "ScenarioDescription": "A severe imbalance of blood sugar levels.",
+    "Emergency": "Yes"
+}

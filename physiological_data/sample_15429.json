@@ -1,0 +1,11 @@
+{
+    "SampleID": 15429,
+    "HeartRate": 76,
+    "SystolicBP": 121,
+    "DiastolicBP": 72,
+    "OxygenSaturation": 95.9,
+    "Temperature": 98.6,
+    "ScenarioName": "Seasonal Allergies",
+    "ScenarioDescription": "Allergic reactions to environmental triggers.",
+    "Emergency": "No"
+}
