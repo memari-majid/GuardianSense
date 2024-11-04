@@ -1,87 +1,155 @@
 # **GuardianSense: Autonomous Multi-Modal Emergency Detection Agent for Disabled Persons**
 <img src="./AI_doctor.png" alt="AI Doctor" style="width: 100%;"/>
 
-
 ## Overview  
-**GuardianSense** is an AI-driven, autonomous multi-modal agent designed to assist disabled individuals by continuously monitoring their environment through various data inputs like video, image, text, speech, and URLs. By leveraging pretrained models on medical data, GuardianSense makes intelligent, autonomous decisions to detect potential emergencies and triggers alarms to notify caregivers or authorities in real-time. It also integrates health records from Apple Watches and GPS data from vehicle airbags to provide comprehensive monitoring, offering a proactive approach to enhancing the safety and independence of individuals with disabilities.
+**GuardianSense** is an AI-driven, autonomous multi-modal agent designed to assist disabled individuals by continuously monitoring their environment through various data inputs like video, image, text, speech, and URLs. By leveraging pretrained models on medical data, GuardianSense makes intelligent, autonomous decisions to detect potential emergencies and triggers alarms to notify caregivers or authorities in real-time.
 
-## Features  
-- **Real-time video and image processing**: Detects unusual behavior, falls, or dangerous objects in the environment through video feeds and images.
-- **Text and database integration**: Analyzes textual data from medical databases or personalized care instructions to assess health risks or changes in routine.
-- **Speech recognition and processing**: Understands voice commands and verbal cues from users, providing an additional modality for detecting distress signals.
-- **URL processing**: Monitors relevant web data sources or APIs that may provide critical information, such as weather alerts or health data.
-- **Medical Decision-Making**: Uses pretrained models on medical data to autonomously assess user health and environmental risks, making decisions to trigger appropriate responses.
-- **Health Record Analysis**: Analyzes health data from Apple Watches to monitor vital signs and detect anomalies in real-time.
-- **GPS Integration**: Uses GPS data from vehicle airbags to detect vehicle-related emergencies or collisions.
-- **File Selection Explorer**: When running `main.py`, a file explorer opens, allowing users to select any data type (e.g., video, image, text, JSON, or audio files) for analysis.
-- **Emergency triggers**: Automatically triggers alarms or sends notifications in case of emergency events, alerting caregivers or emergency services.
-- **Multi-modal integration**: Combines and processes data from multiple sources to form a holistic understanding of the user's environment and safety status.
+## Installation Guide
 
-## Getting Started  
-
-### Installation
-
-Clone this repository:
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/your-repository/guardiansense.git
 cd guardiansense
 ```
 
-### Install Python Dependencies
-Install the required Python packages by running the following command:
+### 2. Environment Setup
+
+#### Option 1: Using Conda (Recommended)
+1. Install Miniconda or Anaconda if not already installed
+2. Create and activate the environment using the provided YAML file:
 ```bash
+# Create environment from YAML
 conda env create -f environment.yml
-conda activate llm
+
+# Activate the environment
+conda activate guardian
 ```
 
-### Install Ollama  
-Ollama is the core platform for running the local language models.
+The `environment.yml` file includes all necessary dependencies:
+```yaml
+name: guardian
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - streamlit
+  - numpy
+  - pillow
+  - opencv
+  - tqdm
+  - pip
+  - pip:
+    - pyttsx3
+    - espeak
+```
 
+#### Option 2: Manual Installation
+If you prefer not to use conda, install dependencies manually:
+```bash
+pip install streamlit numpy Pillow opencv-python tqdm pyttsx3
+```
 
-#### Linux Install
-To install Ollama, run the following command:
+#### Additional System Dependencies
+For Ubuntu/Debian systems (required for audio generation):
+```bash
+sudo apt-get update
+sudo apt-get install -y espeak espeak-ng python3-espeak
+```
+
+### 3. LLM Setup (Optional)
+If using the LLM features:
+
+1. Install Ollama:
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-Start Ollama:
+2. Start Ollama service:
 ```bash
 ollama serve
 ```
 
-### Pull the Required Models
-You will need to download the specific models that power the RAG system.
-
-Use the following command to pull the necessary models:
+3. Pull required models:
 ```bash
 ollama pull llama3.2
 ```
 
-To run the application using Streamlit:
+## Usage
+
+### 1. Synthetic Data Generation
+Generate multi-modal training data using either:
+
+#### Streamlit Interface (Recommended)
+```bash
+streamlit run generate_synthetic_data_streamlit.py
+```
+Features:
+- Interactive scenario selection
+- Multi-modal data type options
+- Real-time progress tracking
+- Visual feedback
+
+#### Command Line Interface
+```bash
+python generate_synthetic_data.py
+```
+
+The generator creates:
+```
+project_root/
+├── text_data/           # Scenario descriptions
+├── image_data/          # Facial expressions
+├── audio_data/          # Synthesized speech
+├── video_data/          # Scenario animations
+├── physiological_data/  # Vital signs data
+└── metadata/           # SQLite database
+```
+
+### 2. Emergency Detection
+Run the main application:
 ```bash
 streamlit run emergency_detect.py
 ```
 
-When main.py is executed, a file explorer will open, allowing you to select any data type, such as video, image, text, JSON, or audio files for analysis.
+## Features
 
+### Core Capabilities
+- Real-time video/image processing
+- Text and database integration
+- Speech recognition and processing
+- URL data monitoring
+- Medical decision-making
+- Health record analysis
+- GPS integration
+- Emergency triggers
+- Multi-modal integration
 
-## Technologies Used
-- **Python**: Main programming language.
-- **OpenCV**: For real-time video processing.
-- **SpeechRecognition**: For converting speech to text.
-- **YOLO**: For object detection in images and videos.
-- **Natural Language Processing (NLP)**: For text and speech analysis.
-- **Pretrained Medical Models**: For autonomous decision-making based on medical data.
-- **Apple HealthKit API**: For analyzing health records from Apple Watches.
-- **GPS Integration**: For analyzing GPS data from Apple Airtags or other sources.
-- **SQL**: For interacting with the database to access patient records or care instructions.
+### Synthetic Data Generation
+- Multiple emergency/non-emergency scenarios
+- Multi-modal data generation
+- Customizable generation options
+- Progress tracking
+- Database integration
 
-## Contributing  
-Feel free to contribute to this project! If you find a bug or have a feature request, please open an issue. We also welcome pull requests for improving the project.
+## Project Structure
+```
+guardiansense/
+├── environment.yml          # Conda environment file
+├── generate_synthetic_data.py    # Data generator core
+├── generate_synthetic_data_streamlit.py  # Web interface
+├── emergency_detect.py      # Main detection system
+├── README.md               # Documentation
+└── data/                   # Generated datasets
+```
 
-## License  
+## Contributing
+Contributions are welcome! Please feel free to submit pull requests.
+
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contact  
-For any questions or issues, please reach out to the project maintainer:  
+## Contact
+For questions or issues:
 - **Email**: mmemari@uvu.edu
+- **GitHub Issues**: [Project Issues Page](https://github.com/your-repository/guardiansense/issues)

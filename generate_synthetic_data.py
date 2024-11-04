@@ -9,13 +9,20 @@ import random
 import numpy as np
 from PIL import Image, ImageDraw
 import cv2
-import pyttsx3
 import json
 import warnings
 from multiprocessing import Pool, cpu_count
 from itertools import repeat
 from tqdm import tqdm
 import sqlite3  # For SQLite database
+from functools import partial
+
+# Optional imports with error handling
+try:
+    import pyttsx3
+except ImportError:
+    pyttsx3 = None
+    print("Warning: pyttsx3 not installed. Audio generation will be disabled.")
 
 # Suppress any warnings for cleaner output
 warnings.filterwarnings("ignore")
@@ -257,15 +264,18 @@ def generate_image_data(scenario_data):
 def generate_audio_data(scenario_data):
     """
     Generates audio data (speech) for a given scenario using pyttsx3.
-
-    Parameters:
-    - scenario_data (dict): Metadata for the current sample.
-
-    Returns:
-    - str: File path to the generated audio data.
+    If pyttsx3 is not available, returns a placeholder file path.
     """
-    scenario = scenario_data['ScenarioName']   # Get the scenario name
-    sample_id = scenario_data['SampleID']      # Get the sample ID
+    if pyttsx3 is None:
+        # Return a placeholder if pyttsx3 is not available
+        sample_id = scenario_data['SampleID']
+        filename = f'audio_data/sample_{sample_id}.wav'
+        with open(filename, 'w') as f:
+            f.write("Audio generation disabled - pyttsx3 not installed")
+        return filename
+
+    scenario = scenario_data['ScenarioName']
+    sample_id = scenario_data['SampleID']
 
     # Define audio phrases for different scenarios
     audio_phrases = {
@@ -439,36 +449,42 @@ def generate_physiological_data(scenario_data):
 # Function to Generate One Sample
 # -------------------------------
 
-def generate_sample(scenario_data):
+def generate_sample(scenario_data, selected_types):
     """
-    Generates all data modalities for one sample and updates scenario_data with file paths.
-    Also inserts the metadata into the database.
-
+    Generates selected data modalities for one sample and updates scenario_data with file paths.
+    
     Parameters:
-    - scenario_data (dict): Metadata for the current sample.
-
+    - scenario_data (dict): Metadata for the current sample
+    - selected_types (dict): Dictionary indicating which data types to generate
+    
     Returns:
-    - dict: Updated scenario_data with file paths.
+    - dict: Updated scenario_data with file paths
     """
-    # Generate data for each modality
-    text_path = generate_text_data(scenario_data)
-    image_path = generate_image_data(scenario_data)
-    audio_path = generate_audio_data(scenario_data)
-    video_path = generate_video_data(scenario_data)
-    physio_path = generate_physiological_data(scenario_data)
-
-    # Update scenario_data with paths to the generated data files
-    scenario_data.update({
-        'TextDataPath': text_path,
-        'ImageDataPath': image_path,
-        'AudioDataPath': audio_path,
-        'VideoDataPath': video_path,
-        'PhysiologicalDataPath': physio_path
-    })
-
-    # Insert the metadata into the database
-    insert_metadata(scenario_data)
-
+    paths = {}
+    
+    # Generate only selected data types
+    if selected_types['text']:
+        paths['TextDataPath'] = generate_text_data(scenario_data)
+    
+    if selected_types['image']:
+        paths['ImageDataPath'] = generate_image_data(scenario_data)
+    
+    if selected_types['audio']:
+        paths['AudioDataPath'] = generate_audio_data(scenario_data)
+    
+    if selected_types['video']:
+        paths['VideoDataPath'] = generate_video_data(scenario_data)
+    
+    if selected_types['physiological']:
+        paths['PhysiologicalDataPath'] = generate_physiological_data(scenario_data)
+    
+    # Update scenario_data with the generated paths
+    scenario_data.update(paths)
+    
+    # Insert into database if selected
+    if selected_types['database']:
+        insert_metadata(scenario_data)
+    
     return scenario_data
 
 # -------------------------------
@@ -477,17 +493,37 @@ def generate_sample(scenario_data):
 
 def main():
     """
-    Main function to execute the data generation process with parallel processing.
+    Main function to execute the data generation process with user selections.
     """
-    create_directories()
-    create_database()
-
-    sample_id_counter = 0
-    tasks = []
-
+    print("Welcome to the Synthetic Medical Data Generator!")
+    
+    # Get user selections
+    selected_scenarios = get_user_scenarios()
+    num_instances = get_num_instances()
+    selected_types = get_user_data_types()
+    
+    # Create only necessary directories
+    dirs = []
+    if selected_types['text']: dirs.append('text_data')
+    if selected_types['image']: dirs.append('image_data')
+    if selected_types['audio']: dirs.append('audio_data')
+    if selected_types['video']: dirs.append('video_data')
+    if selected_types['physiological']: dirs.append('physiological_data')
+    if selected_types['database']: dirs.append('metadata')
+    
+    for dir_name in dirs:
+        os.makedirs(dir_name, exist_ok=True)
+    
+    # Create database if needed
+    if selected_types['database']:
+        create_database()
+    
     # Prepare tasks for multiprocessing
-    for scenario in SCENARIOS:
-        for instance_num in range(NUM_INSTANCES_PER_SCENARIO):
+    tasks = []
+    sample_id_counter = 0
+    
+    for scenario in selected_scenarios:
+        for instance_num in range(num_instances):
             sample_id_counter += 1
             scenario_data = {
                 'SampleID': sample_id_counter,
@@ -496,17 +532,19 @@ def main():
                 'ScenarioDescription': scenario['description'],
                 'Emergency': scenario['emergency']
             }
-            tasks.append(scenario_data)
-
-    # Determine the number of processes to use
-    num_processes = min(cpu_count(), 8)  # Adjust as needed
-
+            tasks.append((scenario_data, selected_types))
+    
     # Use multiprocessing Pool to generate samples in parallel
+    num_processes = min(cpu_count(), 8)
     with Pool(processes=num_processes) as pool:
-        # Use tqdm for progress bar
-        list(tqdm(pool.imap_unordered(generate_sample, tasks), total=len(tasks)))
-
-    print("Data generation completed successfully.")
+        # Use partial to pass selected_types to generate_sample
+        generate_func = partial(generate_sample, selected_types=selected_types)
+        list(tqdm(pool.imap_unordered(generate_func, [t[0] for t in tasks]), 
+                 total=len(tasks),
+                 desc="Generating data"))
+    
+    print("\nData generation completed successfully!")
+    print(f"Generated {len(tasks)} samples for {len(selected_scenarios)} scenarios.")
 
 # -------------------------------
 # Entry Point of the Script
@@ -514,3 +552,88 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Add these functions after the global variables and before the data generation functions
+
+def get_user_scenarios():
+    """
+    Allows users to select which scenarios they want to generate data for.
+    
+    Returns:
+    - list: Selected scenarios
+    """
+    print("\nAvailable Scenarios:")
+    print("-------------------")
+    for scenario in SCENARIOS:
+        print(f"{scenario['id']}. {scenario['name']} (Emergency: {scenario['emergency']})")
+    
+    while True:
+        try:
+            selection = input("\nEnter scenario IDs (comma-separated) or 'all' for all scenarios: ").strip()
+            if selection.lower() == 'all':
+                return SCENARIOS
+            
+            selected_ids = [int(id.strip()) for id in selection.split(',')]
+            selected_scenarios = [s for s in SCENARIOS if s['id'] in selected_ids]
+            
+            if not selected_scenarios:
+                print("No valid scenarios selected. Please try again.")
+                continue
+                
+            return selected_scenarios
+        except ValueError:
+            print("Invalid input. Please enter numbers separated by commas or 'all'.")
+
+def get_user_data_types():
+    """
+    Allows users to select which types of data they want to generate.
+    
+    Returns:
+    - dict: Selected data types with boolean values
+    """
+    data_types = {
+        'text': 'Text data (descriptions and transcripts)',
+        'image': 'Image data (facial expressions)',
+        'audio': 'Audio data (synthesized speech)',
+        'video': 'Video data (simple animations)',
+        'physiological': 'Physiological data (vital signs)',
+        'database': 'Database entries (metadata)'
+    }
+    
+    print("\nAvailable Data Types:")
+    print("--------------------")
+    for key, description in data_types.items():
+        print(f"- {key}: {description}")
+    
+    while True:
+        selection = input("\nEnter data types (comma-separated) or 'all' for all types: ").strip()
+        if selection.lower() == 'all':
+            return {k: True for k in data_types}
+        
+        try:
+            selected_types = [t.strip().lower() for t in selection.split(',')]
+            result = {k: (k in selected_types) for k in data_types}
+            
+            if not any(result.values()):
+                print("No valid data types selected. Please try again.")
+                continue
+                
+            return result
+        except ValueError:
+            print("Invalid input. Please enter data types separated by commas or 'all'.")
+
+def get_num_instances():
+    """
+    Allows users to specify the number of instances per scenario.
+    
+    Returns:
+    - int: Number of instances per scenario
+    """
+    while True:
+        try:
+            num = int(input("\nEnter number of instances per scenario (1-10000): "))
+            if 1 <= num <= 10000:
+                return num
+            print("Please enter a number between 1 and 10000.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
