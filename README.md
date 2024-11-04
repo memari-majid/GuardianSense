@@ -153,3 +153,152 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For questions or issues:
 - **Email**: mmemari@uvu.edu
 - **GitHub Issues**: [Project Issues Page](https://github.com/your-repository/guardiansense/issues)
+
+## Synthetic Data Generation System
+
+### Overview
+The synthetic data generator creates multi-modal training data for both emergency and non-emergency medical scenarios. It uses Streamlit for an interactive web interface that allows users to customize data generation.
+
+### Scenarios Available
+The generator includes 20 predefined scenarios:
+
+**Emergency Scenarios (IDs 1-12):**
+- Heart Attack: Sudden blockage of blood flow to heart
+- Stroke: Brain blood supply interruption
+- Fall: Unintentional falling events
+- Respiratory Distress: Breathing difficulties
+- Allergic Reaction: Adverse immune responses
+- Seizure: Uncontrolled electrical brain disturbances
+- Diabetic Emergency: Blood sugar imbalances
+- Choking: Airway obstruction
+- Drowning: Liquid submersion cases
+- Poisoning: Harmful substance exposure
+- Severe Bleeding: Excessive blood loss
+- Burns: Heat/chemical tissue injuries
+
+**Non-Emergency Scenarios (IDs 13-20):**
+- Routine Check-up: Regular health examinations
+- Mild Headache: Minor head pain
+- Common Cold: Viral infections
+- Seasonal Allergies: Environmental reactions
+- Minor Cut: Small lacerations
+- Back Pain: Musculoskeletal discomfort
+- Stress: Emotional strain
+- Indigestion: Digestive discomfort
+
+### Data Types Generated
+
+1. **Text Data** (`text_data/`)
+   - Scenario descriptions
+   - Symptom transcripts
+   - Patient complaints
+   - Format: .txt files
+
+2. **Image Data** (`image_data/`)
+   - Facial expressions (128x128 pixels)
+   - Emergency: Distressed face with frown
+   - Non-emergency: Neutral/happy face
+   - Format: .png files
+
+3. **Audio Data** (`audio_data/`)
+   - Synthesized speech using pyttsx3
+   - Emergency: Distress calls, pain descriptions
+   - Non-emergency: Routine complaints
+   - Format: .wav files
+
+4. **Video Data** (`video_data/`)
+   - Simple animations showing movement
+   - Emergency: Erratic/distressed movements
+   - Non-emergency: Stable/calm movements
+   - Format: .mp4 files
+
+5. **Physiological Data** (`physiological_data/`)
+   - Simulated vital signs:
+     - Heart rate
+     - Blood pressure
+     - Oxygen saturation
+     - Temperature
+   - Format: .json files
+
+6. **Database** (`metadata/`)
+   - SQLite database containing:
+     - Sample IDs
+     - Scenario details
+     - File paths
+     - Emergency status
+   - Format: .db file
+
+### Using the Streamlit Interface
+
+1. **Launch the Interface**
+```bash
+streamlit run generate_synthetic_data_streamlit.py
+```
+
+2. **Select Scenarios**
+   - Use "Select All Scenarios" checkbox for all scenarios
+   - Or individually select specific scenarios
+   - Each scenario shows emergency/non-emergency status
+
+3. **Choose Data Types**
+   - Use "Select All Data Types" for complete dataset
+   - Or select specific data types:
+     - Text data
+     - Image data
+     - Audio data
+     - Video data
+     - Physiological data
+     - Database entries
+
+4. **Set Number of Instances**
+   - Choose 1-10000 instances per scenario
+   - Default: 100 instances
+   - Total samples = Scenarios × Instances
+
+5. **Generate Data**
+   - Click "Generate Data" button
+   - Monitor progress bar
+   - View real-time status updates
+   - Receive completion notification
+
+### Example Generated Data Structure
+```
+project_root/
+├── text_data/
+│   ├── sample_1.txt
+│   ├── sample_2.txt
+│   └── ...
+├── image_data/
+│   ├── sample_1.png
+│   ├── sample_2.png
+│   └── ...
+├── audio_data/
+│   ├── sample_1.wav
+│   ├── sample_2.wav
+│   └── ...
+├── video_data/
+│   ├── sample_1.mp4
+│   ├── sample_2.mp4
+│   └── ...
+├── physiological_data/
+│   ├── sample_1.json
+│   ├── sample_2.json
+│   └── ...
+└── metadata/
+    └── dataset_metadata.db
+```
+
+### Data Generation Process
+1. Creates necessary directories
+2. Initializes database if selected
+3. Generates samples for each scenario:
+   - Creates unique sample ID
+   - Generates selected data types
+   - Updates progress bar
+   - Saves metadata to database
+
+### Error Handling
+- Validates selections before generation
+- Handles missing dependencies gracefully
+- Provides clear error messages
+- Maintains data consistency
