@@ -1,2 +1,3 @@
-# Streamlit interface
-# (Keep the existing Streamlit GUI code from generate_synthetic_data_streamlit.py) 
+# Rename from generate_synthetic_data_streamlit.py
+# Update import statement:
+import synthetic_data_generator as sdg 
